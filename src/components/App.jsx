@@ -2,14 +2,20 @@ import ContactForm from './ContactForm/ContactForm';
 import { Component } from 'react';
 import contactsData from './data/data.json';
 import { ContactList } from 'components/ContactList/ContactList';
+import { Filter } from 'components/Filter/Filter.jsx';
 
 class App extends Component {
   state = {
     contacts: contactsData,
-    // contacts: [],
-    // filter: '',
+    filter: '',
     name: '',
     number: '',
+  };
+
+  changeSearchInput = newFilter => {
+    this.setState({
+      filter: newFilter,
+    });
   };
 
   inputChange = e => {
@@ -37,7 +43,7 @@ class App extends Component {
   };
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
     return (
       <div>
         <ContactForm
@@ -47,6 +53,7 @@ class App extends Component {
           onChange={this.inputChange}
         />
 
+        <Filter filter={filter} onFilterType={this.changeSearchInput} />
         <ContactList contactsList={contacts} />
       </div>
     );

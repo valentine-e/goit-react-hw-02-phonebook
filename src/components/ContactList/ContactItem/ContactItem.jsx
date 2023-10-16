@@ -1,8 +1,8 @@
-export const ContactItem = ({ contact }) => {
+export const ContactItem = ({ contact: { name, number } }) => {
   return (
     <>
-      <p>{contact.name}:</p>
-      <span>{contact.number}</span>
+      <p>{name}:</p>
+      <span>{number}</span>
     </>
   );
 };
