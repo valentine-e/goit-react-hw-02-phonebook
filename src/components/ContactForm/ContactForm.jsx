@@ -1,5 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
+
 // import { Formik, Field, Form } from 'formik';
 
 const ContactForm = ({ name, number, onSubmit, onChange }) => {
@@ -31,11 +32,6 @@ const ContactForm = ({ name, number, onSubmit, onChange }) => {
         />
       </label>
       <button>Add contact</button>
-      <ul>
-        <li>
-          <span>{name}</span> <span>{number}</span>
-        </li>
-      </ul>
     </form>
 
     // <Formik
