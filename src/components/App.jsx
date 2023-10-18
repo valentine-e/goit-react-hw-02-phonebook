@@ -25,25 +25,45 @@ class App extends Component {
     });
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.resetForm();
-  };
+  // handleSubmit = e => {
+  //   // e.preventDefault();
+  //   this.props.onSubmit(this.state);
+  //   // this.resetForm();
+  // };
 
-  resetForm = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
+  // resetForm = () => {
+  //   this.setState({
+  //     name: '',
+  //     number: '',
+  //   });
+  // };
 
   onSubmitHandler = data => {
     console.log(data);
   };
 
-  render() {
+  getFilteredContacts = () => {
     const { contacts, filter } = this.state;
+
+    return contacts.filter(contact => {
+      return (
+        contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+        contact.number.includes(filter)
+      );
+    });
+  };
+
+  deleteContactItem = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
+  render() {
+    const { filter } = this.state;
+
+    const visibleContacts = this.getFilteredContacts();
+
     return (
       <div>
         <ContactForm
@@ -51,10 +71,14 @@ class App extends Component {
           number={this.state.number}
           onSubmit={this.onSubmitHandler}
           onChange={this.inputChange}
+          onAdd={this.addContact}
         />
 
         <Filter filter={filter} onFilterType={this.changeSearchInput} />
-        <ContactList contactsList={contacts} />
+        <ContactList
+          contactsList={visibleContacts}
+          onDelete={this.deleteContactItem}
+        />
       </div>
     );
   }

@@ -4,7 +4,7 @@ export const Filter = ({ filter, onFilterType }) => {
       <input
         type="text"
         value={filter}
-        placeholder="Search..."
+        placeholder="Search someone..."
         onChange={e => {
           onFilterType(e.target.value);
         }}
