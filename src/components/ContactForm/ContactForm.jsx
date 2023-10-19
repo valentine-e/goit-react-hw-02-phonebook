@@ -1,8 +1,6 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-// import { Formik, Field, Form } from 'formik';
-
 const ContactForm = ({ name, number, onSubmit, onChange }) => {
   const nameInputId = nanoid();
   const numberInputId = nanoid();
@@ -31,29 +29,8 @@ const ContactForm = ({ name, number, onSubmit, onChange }) => {
           onChange={onChange}
         />
       </label>
-      <button>Add contact</button>
+      <button type="submit">Add contact</button>
     </form>
-
-    // <Formik
-    //   initialValues={{
-    //     name: '',
-    //     number: '',
-    //     email: '',
-    //   }}
-    //   onSubmit={values => {
-    //     console.log(values);
-    //   }}
-    // >
-    //   <Form>
-    //     <label htmlFor="name">First Name</label>
-    //     <Field id="name" name="name" placeholder="Name" />
-
-    //     <label htmlFor="number">Last Name</label>
-    //     <Field id="number" name="number" placeholder="Number" />
-
-    //     <button type="submit">Submit</button>
-    //   </Form>
-    // </Formik>
   );
 };
 

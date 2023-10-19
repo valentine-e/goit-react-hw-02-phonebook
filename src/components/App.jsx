@@ -3,6 +3,7 @@ import { Component } from 'react';
 import contactsData from './data/data.json';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter.jsx';
+import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
@@ -25,21 +26,38 @@ class App extends Component {
     });
   };
 
-  // handleSubmit = e => {
-  //   // e.preventDefault();
-  //   this.props.onSubmit(this.state);
-  //   // this.resetForm();
-  // };
+  createNewContact = () => {
+    const { contacts, name, number } = this.state;
+    const newContact = {
+      id: nanoid(),
+      name: name,
+      number: number,
+    };
 
-  // resetForm = () => {
-  //   this.setState({
-  //     name: '',
-  //     number: '',
-  //   });
-  // };
+    const newName = newContact.name;
 
-  onSubmitHandler = data => {
-    console.log(data);
+    if (
+      contacts.find(item => item.name.toLowerCase() === newName.toLowerCase())
+    ) {
+      alert(newName + ' is already in contacts!');
+    } else {
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+    }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.createNewContact();
+    this.resetForm();
+  };
+
+  resetForm = () => {
+    this.setState({
+      name: '',
+      number: '',
+    });
   };
 
   getFilteredContacts = () => {
@@ -69,9 +87,8 @@ class App extends Component {
         <ContactForm
           name={this.state.name}
           number={this.state.number}
-          onSubmit={this.onSubmitHandler}
+          onSubmit={this.handleSubmit}
           onChange={this.inputChange}
-          onAdd={this.addContact}
         />
 
         <Filter filter={filter} onFilterType={this.changeSearchInput} />
