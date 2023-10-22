@@ -9,8 +9,6 @@ class App extends Component {
   state = {
     contacts: contactsData,
     filter: '',
-    name: '',
-    number: '',
   };
 
   changeSearchInput = newFilter => {
@@ -19,16 +17,9 @@ class App extends Component {
     });
   };
 
-  inputChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState({
-      [name]: value,
-    });
-  };
-
-  createNewContact = () => {
-    const { contacts, name, number } = this.state;
-    const newContact = {
+  createNewContact = (name, number) => {
+    const { contacts } = this.state;
+    let newContact = {
       id: nanoid(),
       name: name,
       number: number,
@@ -45,19 +36,6 @@ class App extends Component {
         contacts: [...prevState.contacts, newContact],
       }));
     }
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    this.createNewContact();
-    this.resetForm();
-  };
-
-  resetForm = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
   };
 
   getFilteredContacts = () => {
@@ -79,22 +57,23 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
+    const {
+      getFilteredContacts,
+      createNewContact,
+      changeSearchInput,
+      deleteContactItem,
+    } = this;
 
-    const visibleContacts = this.getFilteredContacts();
+    const visibleContacts = getFilteredContacts();
 
     return (
       <div>
-        <ContactForm
-          name={this.state.name}
-          number={this.state.number}
-          onSubmit={this.handleSubmit}
-          onChange={this.inputChange}
-        />
+        <ContactForm onAdd={createNewContact} />
 
-        <Filter filter={filter} onFilterType={this.changeSearchInput} />
+        <Filter filter={filter} onFilterType={changeSearchInput} />
         <ContactList
           contactsList={visibleContacts}
-          onDelete={this.deleteContactItem}
+          onDelete={deleteContactItem}
         />
       </div>
     );
