@@ -9,6 +9,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 
   padding: 10px 20px;
   text-transform: uppercase;

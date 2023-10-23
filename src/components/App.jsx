@@ -4,6 +4,7 @@ import contactsData from './data/data.json';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter.jsx';
 import { nanoid } from 'nanoid';
+import { FormWrapper } from './App.styled';
 
 class App extends Component {
   state = {
@@ -67,7 +68,7 @@ class App extends Component {
     const visibleContacts = getFilteredContacts();
 
     return (
-      <div>
+      <FormWrapper>
         <ContactForm onAdd={createNewContact} />
 
         <Filter filter={filter} onFilterType={changeSearchInput} />
@@ -75,7 +76,7 @@ class App extends Component {
           contactsList={visibleContacts}
           onDelete={deleteContactItem}
         />
-      </div>
+      </FormWrapper>
     );
   }
 }

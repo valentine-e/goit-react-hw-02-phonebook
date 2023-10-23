@@ -12,12 +12,14 @@ export const ListItemButton = styled.button`
   background-color: white;
   border-radius: 10px;
   padding: 5px;
-  width: 140px;
-  border: 1px solid currentColor;
+  width: 100px;
+  border: 1px solid cornflowerblue;
   text-transform: uppercase;
   transition: all 0.4s;
+  color: cornflowerblue;
 
   &:hover {
-    color: cornflowerblue;
+    color: white;
+    background-color: cornflowerblue;
   }
 `;
