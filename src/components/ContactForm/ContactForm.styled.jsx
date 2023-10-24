@@ -23,7 +23,7 @@ export const Input = styled.input`
 
   &:hover,
   &:focus {
-    outline: 1px solid cornflowerblue;
+    outline: 2px solid cornflowerblue;
   }
 `;
 
@@ -42,6 +42,6 @@ export const FormButton = styled.button`
   &:focus {
     color: cornflowerblue;
     background-color: white;
-    border: 1px solid cornflowerblue;
+    border: 2px solid cornflowerblue;
   }
 `;

@@ -5,4 +5,5 @@ export const FormWrapper = styled.div`
   background-color: aliceblue;
   padding: 60px 30px;
   border-radius: 30px;
+  margin: 60px auto;
 `;
